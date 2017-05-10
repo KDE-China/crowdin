@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cd crowdin/kf5-trunk
-crowdin-cli.ruby2.2 download translations -b kf5-trunk
+crowdin-cli.ruby2.2 download -b kf5-trunk
 
 cd ../kf5-stable
-crowdin-cli.ruby2.2 download translations -b kf5-stable
+crowdin-cli.ruby2.2 download -b kf5-stable
 
 echo "Done!"

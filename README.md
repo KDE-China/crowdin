@@ -14,3 +14,5 @@ The process can be simplified by 3 steps:
 1. before_merge: step 1, 2, 3
 2. Manually merge
 3. after_merge: step 5, 6, 7
+
+Sync process will take hours. So sync every week is a practical choice.
