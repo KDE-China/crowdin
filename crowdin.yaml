@@ -1,0 +1,9 @@
+"api_key_env": CROWDIN_API_KEY
+"project_identifier": "kdeorg"
+
+files: [
+ {
+  "source" : "/templates/**/*.pot",
+  "translation" : "/%locale_with_underscore%/**/%file_name%.po",
+ }
+]

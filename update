@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Copyright Guo Yunhe <guoyunhebrave@gmail.com> 2017
+
+# This script will update translation files from KDE SVN server.
+
+cd crowdin/kf5-trunk
+svn up templates
+svn revert -R zh_CN
+svn up zh_CN
+
+cd ../kf5-stable
+svn up templates
+svn revert -R zh_CN
+svn up zh_CN
+
+cd ../../upstream/kf5-trunk
+svn up templates
+svn revert -R zh_CN
+svn up zh_CN
+
+cd ../kf5-stable
+svn up templates
+svn revert -R zh_CN
+svn up zh_CN
+
+echo "Done!"
+
+# End of file

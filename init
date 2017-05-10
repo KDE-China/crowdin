@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Copyright Guo Yunhe <guoyunhebrave@gmail.com> 2017
+
+# This script will initialize project and download files from KDE SVN server.
+# NOTE: if you run this script again, it would remove old SVN data!
+
+# Remove old data if exists
+rm -rf upstream crowdin
+
+# Upstream folder
+mkdir upstream
+cd upstream
+
+PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
+
+svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
+cd kf5-trunk
+svn up templates
+svn up zh_CN
+cd ..
+
+svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
+cd kf5-stable
+svn up templates
+svn up zh_CN
+cd ..
+
+cd ..
+
+# Crowdin folder
+mkdir crowdin
+cd crowdin
+
+PREFIX="svn://anonsvn.kde.org/home/kde"
+
+svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
+cd kf5-trunk
+svn up templates
+svn up zh_CN
+cd ..
+
+svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
+cd kf5-stable
+svn up templates
+svn up zh_CN
+cd ..
+
+cd ..
+
+cp crowdin.yaml crowdin/kf5-trunk
+cp crowdin.yaml crowdin/kf5-stable
+
+# End of file
