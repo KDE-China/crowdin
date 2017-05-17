@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd upstream
+
+for f in $(find -name "*.po"); do
+    echo $f
+    msgmerge ../crowdin/$f $f -U -w 79
+    ../pohead.py $f ../crowdin/$f $f
+done
