@@ -4,6 +4,7 @@
 
 # $1 is the po from SVN, with head info
 # $2 is the po from Crowdin, without head info
+# $3 is the output po file
 
 import sys
 import re
