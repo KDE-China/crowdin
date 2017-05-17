@@ -1,5 +1,5 @@
 [General]
-BranchDir=crowdin/kf5-trunk/zh_CN
+BranchDir=upstream/kf5-stable/zh_CN
 LangCode=zh_CN
 MailingList=kde-china@kde.org
 PoBaseDir=upstream/kf5-trunk/zh_CN
