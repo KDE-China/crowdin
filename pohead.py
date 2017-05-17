@@ -40,12 +40,18 @@ names = {
 
 m = re.search('Last-Translator: ([\-a-z0-9_]+) <([\.\-a-z0-9_]+@[\.\-a-z0-9]+)>', crowdin_contents)
 
-name = m.group(1)
-email = m.group(2)
+if m:
+    name = m.group(1)
+    email = m.group(2)
+else:
+    sys.exit()
 
 m = re.search('PO-Revision-Date: (\d{4})', crowdin_contents)
 
-year = m.group(1)
+if m:
+    year = m.group(1)
+else:
+    sys.exit()
 
 name = names.get(name, name)
 
