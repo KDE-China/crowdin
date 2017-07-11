@@ -6,11 +6,7 @@
 # NOTE: if you run this script again, it would remove old SVN data!
 
 # Remove old data if exists
-rm -rf upstream crowdin
-
-# Upstream folder
-mkdir upstream
-cd upstream
+rm -rf kf5-trunk kf5-stable
 
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
@@ -26,29 +22,7 @@ svn up templates
 svn up zh_CN
 cd ..
 
-cd ..
-
-# Crowdin folder
-mkdir crowdin
-cd crowdin
-
-PREFIX="svn://anonsvn.kde.org/home/kde"
-
-svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
-cd kf5-trunk
-svn up templates
-svn up zh_CN
-cd ..
-
-svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
-cd kf5-stable
-svn up templates
-svn up zh_CN
-cd ..
-
-cd ..
-
-cp crowdin.yaml crowdin/kf5-trunk
-cp crowdin.yaml crowdin/kf5-stable
+cp crowdin.yaml kf5-trunk
+cp crowdin.yaml kf5-stable
 
 # End of file

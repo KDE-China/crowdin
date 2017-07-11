@@ -1,4 +1,4 @@
-upstream
-crowdin
+/kf5-stable
+/kf5-trunk
 /main.lqa
 /lokalize-scripts/scripts.rc

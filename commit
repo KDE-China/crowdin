@@ -5,7 +5,7 @@
 # This script will check translation changes before submit.
 
 # Check trunk branch
-cd upstream/kf5-trunk/zh_CN
+cd kf5-trunk/zh_CN
 svn commit -m "Crowdin Sync [kf5-trunk] [zh_CN]"
 
 # Check stable branch

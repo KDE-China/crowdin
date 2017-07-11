@@ -4,25 +4,32 @@
 
 # This script will update translation files from KDE SVN server.
 
-cd crowdin/kf5-trunk
+cd kf5-trunk
 svn up templates
-svn revert -R zh_CN
-svn up zh_CN
+svn up --accept=theirs-full zh_CN
 
 cd ../kf5-stable
 svn up templates
-svn revert -R zh_CN
-svn up zh_CN
+svn up --accept=theirs-full zh_CN
 
-cd ../../upstream/kf5-trunk
-svn up templates
-svn revert -R zh_CN
-svn up zh_CN
+cd ..
 
-cd ../kf5-stable
-svn up templates
-svn revert -R zh_CN
-svn up zh_CN
+# Generate missing po files from pot templates
+generate() {
+    for pot in $(find -name "*.pot"); do
+        po="../zh_CN/$(echo $pot | sed 's/pot$/po/g')"
+        if [ ! -f $po ]; then
+            install -m 644 -Dv $pot $po
+            svn add $po -q --parents >/dev/null
+        fi
+    done
+}
+
+cd kf5-trunk/templates
+generate
+
+cd ../../kf5-stable/templates
+generate
 
 echo "Done!"
 
