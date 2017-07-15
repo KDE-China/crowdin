@@ -6,10 +6,12 @@
 
 cd kf5-trunk
 svn up templates
+svn revert -R zh_CN
 svn up --accept=theirs-full zh_CN
 
 cd ../kf5-stable
 svn up templates
+svn revert -R zh_CN
 svn up --accept=theirs-full zh_CN
 
 cd ..
