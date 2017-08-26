@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cd kf5-trunk
-crowdin upload translations -b kf5-trunk --import-eq-suggestions
-
-cd ../kf5-stable
-crowdin upload translations -b kf5-stable --import-eq-suggestions
-
-echo "Done!"
