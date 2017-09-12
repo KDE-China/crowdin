@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./update
+
 cd kf5-trunk
 crowdin download -b kf5-trunk
 
