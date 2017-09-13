@@ -1,0 +1,21 @@
+#!/bin/bash
+
+root_dir=$(realpath .)
+credits_dir=$root_dir/credits
+fetch_script=$root_dir/fetch-old-credits.py
+
+function backup {
+    mkdir -p $credits_dir/$1/$2
+    cd $1/zh_CN/$2
+    for po in $(find -name "*.po"); do
+        credit_file=$credits_dir/$1/$2/$(basename $po).credit
+        touch $credit_file
+        $fetch_script $po $credit_file
+    done
+    cd $root_dir
+}
+
+backup kf5-trunk messages
+backup kf5-trunk docmessages
+backup kf5-stable messages
+backup kf5-stable docmessages

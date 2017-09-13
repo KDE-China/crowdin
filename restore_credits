@@ -1,0 +1,21 @@
+#!/bin/bash
+
+root_dir=$(realpath .)
+credits_dir=$root_dir/credits
+fetch_script=$root_dir/fetch-old-credits.py
+
+function restore {
+    mkdir -p $credits_dir/$1/$2
+    cd $1/zh_CN/$2
+    for po in $(find -name "*.po"); do
+        credit_file=$credits_dir/$1/$2/$(basename $po).credit
+        touch $credit_file
+        $fetch_script $credit_file $po
+    done
+    cd $root_dir
+}
+
+restore kf5-trunk messages
+restore kf5-trunk docmessages
+restore kf5-stable messages
+restore kf5-stable docmessages

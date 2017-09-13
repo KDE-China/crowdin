@@ -5,10 +5,12 @@
 # This script will update translation files from KDE SVN server.
 
 cd kf5-trunk
+svn revert --depth=infinity .
 svn up templates
 svn up --accept=theirs-full zh_CN
 
 cd ../kf5-stable
+svn revert --depth=infinity .
 svn up templates
 svn up --accept=theirs-full zh_CN
 

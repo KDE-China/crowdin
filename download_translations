@@ -2,6 +2,8 @@
 
 ./update
 
+./backup_credits
+
 cd kf5-trunk
 crowdin download -b kf5-trunk
 
@@ -26,5 +28,7 @@ done
 for po in $(find -name "*.po"); do
     msgcat -w 79 -o $po $po
 done
+
+./restore_credits
 
 echo "Done!"
