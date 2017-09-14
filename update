@@ -6,13 +6,15 @@
 
 cd kf5-trunk
 svn revert --depth=infinity .
+svn cleanup --remove-unversioned zh_CN
 svn up templates
-svn up --accept=theirs-full zh_CN
+svn up zh_CN
 
 cd ../kf5-stable
-svn revert --depth=infinity .
+svn revert --depth=infinity . # Revert unstaged changes
+svn cleanup --remove-unversioned zh_CN # Remove unversioned files
 svn up templates
-svn up --accept=theirs-full zh_CN
+svn up zh_CN
 
 cd ..
 

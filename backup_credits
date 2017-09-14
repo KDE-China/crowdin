@@ -9,7 +9,7 @@ function backup {
     cd $1/zh_CN/$2
     for po in $(find -name "*.po"); do
         credit_file=$credits_dir/$1/$2/$(basename $po).credit
-        touch $credit_file
+        > $credit_file # Empty file content
         $fetch_script $po $credit_file
     done
     cd $root_dir

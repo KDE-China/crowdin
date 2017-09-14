@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./update
+
 cd kf5-trunk
 crowdin upload sources -b kf5-trunk
 
