@@ -1,8 +1,8 @@
 [General]
-BranchDir=upstream/kf5-trunk/zh_CN
+BranchDir=kf5-trunk/zh_CN
 LangCode=zh_CN
 MailingList=kde-china@kde.org
-PoBaseDir=upstream/kf5-stable/zh_CN
-PotBaseDir=upstream/kf5-stable/templates
+PoBaseDir=kf5-stable/zh_CN
+PotBaseDir=kf5-stable/templates
 ProjectID=kf5_stable
 TargetLangCode=zh_CN
