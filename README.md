@@ -1,14 +1,29 @@
-# crowdin
-Crowdin localization workflow (experimental)
+# Crowdin Translation Platform Integration
 
-1. update: download latest code from SVN
-2. upload_sources: upload latest templates to Crowdin
-3. download_translations: download latest translations from Crowdin
-4. merge: automatically merge Crowdin to SVN
-5. commit: commit merged translations to SVN
-  a. Automatical: ideal solution, just run commit script.
-  b. Manual: use svn command to commit only changed files, need to review
-6. update: download and override local translations
-7. upload_translations: upload merged translations from SVN to Crowdin
+## Requirements
 
-Sync process will take hours. So sync every week is a practical choice.
+1. git
+2. svn
+3. python
+4. gettext-tools
+5. crowdin-cli (version 2)
+
+You also need a API key given by project maintainers. Create a file at `~/.crowdin.yaml`:
+
+```yaml
+"api_key" : "<your_key_string>"
+```
+
+## Initialize
+
+```sh
+git clone https://github.com/KDE-China/crowdin.git
+cd crowdin
+./init
+```
+
+## Synchronization
+
+```sh
+./sync
+```
