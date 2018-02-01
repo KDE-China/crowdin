@@ -2,9 +2,8 @@
 
 # This script merge head of *.po files back to Crowdin generated *.po files
 
-# $1 is the po from SVN, with head info
-# $2 is the po from Crowdin, without head info
-# $3 is the output po file
+# $1 is the source file with credits
+# $2 is the target file without credits
 
 import sys
 import re
@@ -13,12 +12,12 @@ with open(sys.argv[1], 'r') as f:
     source_lines = f.readlines()
 
 with open(sys.argv[2], 'r') as f:
-    crowdin_contents = f.read()
-
+    target_lines = f.readlines()
 
 # Read old credits
 
 credits = ''
+content = ''
 
 for line in source_lines:
     if line.startswith('#'):
@@ -26,5 +25,13 @@ for line in source_lines:
     else:
         break
 
+content_start = False
+for line in target_lines:
+    if content_start:
+        content += line
+    elif line.startswith('msgid'):
+        content_start = True
+        content += line
+
 with open(sys.argv[2], 'w') as f:
-    f.write(credits + crowdin_contents)
+    f.write(credits + content)

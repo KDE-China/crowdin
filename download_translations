@@ -12,13 +12,6 @@ crowdin download -b kf5-stable
 
 cd ..
 
-# Add po head to _qt.po files
-for po in $(find -name "*_qt.po"); do
-    cp "head" "po_tmp"
-    tail -n +4 $po >> "po_tmp"
-    mv "po_tmp" $po
-done
-
 for po in $(find -name "trojita_common.po"); do
     cp "head" "po_tmp"
     tail -n +4 $po >> "po_tmp"
