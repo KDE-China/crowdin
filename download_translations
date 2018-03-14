@@ -5,10 +5,10 @@
 ./backup_credits
 
 cd kf5-trunk
-crowdin download -b kf5-trunk
+crowdin download -b kf5-trunk | grep " - "> lost.txt
 
 cd ../kf5-stable
-crowdin download -b kf5-stable
+crowdin download -b kf5-stable | grep " - "> lost.txt
 
 cd ..
 
