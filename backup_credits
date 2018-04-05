@@ -1,21 +1,38 @@
 #!/bin/bash
 
+# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Updated: 2018-04-05
+ 
+# Back credit header in po files
+#
+# Crowdin will erease all credits in po files. So we have to backup and restore
+# them manually. Credits was saved in `credits` folder
+
 root_dir=$(realpath .)
 credits_dir=$root_dir/credits
 fetch_script=$root_dir/fetch-old-credits.py
 
+# $1 - branch kf5-trunk or kf5-stable
+# $2 - language code
+# $3 - messages or docmessages
 function backup {
-    mkdir -p $credits_dir/$1/$2
-    cd $1/zh_CN/$2
+    work_dir=$credits_dir/$1/$2/$3
+    mkdir -p $work_dir
+    cd $work_dir
     for po in $(find -name "*.po"); do
-        credit_file=$credits_dir/$1/$2/$(basename $po).credit
+        credit_file=$work_dir/$(basename $po).credit
         > $credit_file # Empty file content
         $fetch_script $po $credit_file
     done
     cd $root_dir
 }
 
-backup kf5-trunk messages
-backup kf5-trunk docmessages
-backup kf5-stable messages
-backup kf5-stable docmessages
+backup kf5-trunk zh_CN messages
+backup kf5-trunk zh_CN docmessages
+backup kf5-stable zh_CN messages
+backup kf5-stable zh_CN docmessages
+
+backup kf5-trunk zh_TW messages
+backup kf5-trunk zh_TW docmessages
+backup kf5-stable zh_TW messages
+backup kf5-stable zh_TW docmessages

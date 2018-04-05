@@ -2,11 +2,11 @@
 
 ## 系统需求
 
-1. git
-2. svn
-3. python
-4. gettext-tools
-5. crowdin-cli (version 2)
+1.  git
+2.  svn
+3.  python
+4.  gettext-tools
+5.  crowdin-cli (version 2)
 
 You also need a API key given by project maintainers. Create a file at `~/.crowdin.yaml`:
 
@@ -27,6 +27,30 @@ cd crowdin
 ```sh
 ./sync
 ```
+
+## 添加新语言
+
+比如要添加中文（香港）。
+
+首先在 Crowdin 网站上的设置里，添加新的 Target Language 。
+
+然后需要修改 init 脚本，在 $LANGS 里添加 zh_HK 。注意这里连字符是 \_ 。然后运行
+
+```
+./init
+```
+
+再后需要更改 commit, backup_credits 和 resotre_credits 脚本中的 $LANGS 变量。
+
+最后运行翻译上传脚本：
+
+```
+./upload_translations zh-HK
+```
+
+注意语言代码里的连字符是 - 。
+
+以后的同步流程不变。
 
 ## 常见问题解答
 

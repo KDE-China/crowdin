@@ -1,27 +1,38 @@
 #!/bin/bash
 
-# Copyright Guo Yunhe <guoyunhebrave@gmail.com> 2017
+# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Updated: 2018-04-05
 
-# This script will initialize project and download files from KDE SVN server.
+# Initialize project and download files from KDE SVN server.
+#
+# You need a developer account and ssh key to use this script.
+#
 # NOTE: if you run this script again, it would remove old SVN data!
 
 # Remove old data if exists
 rm -rf kf5-trunk kf5-stable
 
+# Define URI to SVN server
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
+# Languages
+LANGS="zh_CN zh_TW"
+
+# Initialize trunk branch
 svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
 cd kf5-trunk
 svn up templates
-svn up zh_CN
+svn up $LANGS
 cd ..
 
+# Initialize stable branch
 svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
 cd kf5-stable
 svn up templates
-svn up zh_CN
+svn up $LANGS
 cd ..
 
+# Copy crowdin configuration file to branches
 cp crowdin.yaml kf5-trunk
 cp crowdin.yaml kf5-stable
 
