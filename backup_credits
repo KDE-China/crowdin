@@ -19,20 +19,21 @@ fetch_script=$root_dir/fetch-old-credits.py
 # $2 - language code
 # $3 - messages or docmessages
 function backup {
-    work_dir=$credits_dir/$1/$2/$3
-    mkdir -p $work_dir
-    cd $work_dir
+    backup_dir=$credits_dir/$1/$2/$3
+    mkdir -p $backup_dir
+    po_dir=$root_dir/$1/$2/$3
+    cd $po_dir
     for po in $(find -name "*.po"); do
-        credit_file=$work_dir/$(basename $po).credit
+        credit_file=$backup_dir/$(basename $po).credit
         > $credit_file # Empty file content
         $fetch_script $po $credit_file
     done
     cd $root_dir
 }
 
-for locale in $LOCALES_UNDERSCORE; do
-    backup kf5-trunk $locale messages
-    backup kf5-trunk $locale docmessages
-    backup kf5-stable $locale messages
-    backup kf5-stable $locale docmessages
+for LOCALE in $LOCALES_UNDERSCORE; do
+    backup kf5-trunk $LOCALE messages
+    backup kf5-trunk $LOCALE docmessages
+    backup kf5-stable $LOCALE messages
+    backup kf5-stable $LOCALE docmessages
 done
