@@ -4,14 +4,20 @@
 
 # This script will check translation changes before submit.
 
-# Check trunk branch
-cd kf5-trunk/zh_CN
-svn commit -m "Crowdin Sync [kf5-trunk] [zh_CN]"
+# Load environment variables
+source environment
 
-# Check stable branch
-cd ../../kf5-stable/zh_CN
-svn commit -m "Crowdin Sync [kf5-stable] [zh_CN]"
+for locale in $COMMIT_LOCALES_UNDERSCORE; do
+    # Commit trunk branch
+    cd kf5-trunk/$locale
+    svn commit -m "Crowdin Sync [kf5-trunk] [$locale]"
 
-echo "Done!"
+    # Commit stable branch
+    cd ../../kf5-stable/$locale
+    svn commit -m "Crowdin Sync [kf5-stable] [$locale]"
+
+    # Back to project root directory
+    cd ../../
+done
 
 # End of file

@@ -1,31 +1,32 @@
 #!/bin/bash
 
-# Copyright Guo Yunhe <guoyunhebrave@gmail.com> 2017
+# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Updated: 2018-04-05
 
-# Languages
-LANGS="zh_CN zh_TW"
+# Update sources and translations from KDE SVN server.
 
-# This script will update translation files from KDE SVN server.
+# Load environment variables
+source environment
 
 cd kf5-trunk
 svn revert --depth=infinity .
 svn cleanup --remove-unversioned zh_CN
 svn up templates
-svn up $LANGS
+svn up $LOCALES_UNDERSCORE
 
 cd ../kf5-stable
 svn revert --depth=infinity . # Revert unstaged changes
 svn cleanup --remove-unversioned zh_CN # Remove unversioned files
 svn up templates
-svn up $LANGS
+svn up $LOCALES_UNDERSCORE
 
 cd ..
 
 # Generate missing po files from pot templates
 generate() {
     for pot in $(find -name "*.pot"); do
-        for lang in $LANGS; do
-            po="../$lang/$(echo $pot | sed 's/pot$/po/g')"
+        for locale in $LOCALES_UNDERSCORE; do
+            po="../$locale/$(echo $pot | sed 's/pot$/po/g')"
             if [ ! -f $po ]; then
                 install -m 644 -Dv $pot $po
                 svn add $po -q --parents >/dev/null
@@ -39,7 +40,5 @@ generate
 
 cd ../../kf5-stable/templates
 generate
-
-echo "Done!"
 
 # End of file

@@ -4,17 +4,19 @@
 
 # This script will check translation changes before submit.
 
-# Check trunk branch
-cd kf5-trunk/zh_CN
+# Diff trunk branch
+cd kf5-trunk
 svn diff > trunk.diff
 if [ -s trunk.diff ] # if diff is not empty
 then
     kompare -o trunk.diff
 fi
-cd ../..
 
-# Check stable branch
-cd kf5-stable/zh_CN
+# Back to project root directory
+cd ..
+
+# Diff stable branch
+cd kf5-stable
 svn diff > stable.diff
 if [ -s stable.diff ]
 then

@@ -9,27 +9,27 @@
 #
 # NOTE: if you run this script again, it would remove old SVN data!
 
+# Load environment variables
+source environment
+
 # Remove old data if exists
 rm -rf kf5-trunk kf5-stable
 
 # Define URI to SVN server
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
-# Languages
-LANGS="zh_CN zh_TW"
-
 # Initialize trunk branch
 svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
 cd kf5-trunk
 svn up templates
-svn up $LANGS
+svn up $LOCALES_UNDERSCORE
 cd ..
 
 # Initialize stable branch
 svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
 cd kf5-stable
 svn up templates
-svn up $LANGS
+svn up $LOCALES_UNDERSCORE
 cd ..
 
 # Copy crowdin configuration file to branches

@@ -1,5 +1,9 @@
 # Crowdin 翻译同步工作流
 
+Sources: SVN --> Local --> Crowdin
+
+Translations: Crowdin --> Local --> SVN
+
 ## 系统需求
 
 1.  git

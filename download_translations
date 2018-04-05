@@ -17,5 +17,3 @@ for po in $(find -name "*.po"); do
 done
 
 ./restore_credits
-
-echo "Done!"

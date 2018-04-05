@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Updated: 2018-04-05
+
+# Upload local source pots to Crowdin
+
 ./update
 
 cd kf5-trunk
@@ -8,4 +13,4 @@ crowdin upload sources -b kf5-trunk
 cd ../kf5-stable
 crowdin upload sources -b kf5-stable
 
-echo "Done!"
+# End of file

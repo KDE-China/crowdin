@@ -13,9 +13,15 @@
 #   ./upload_translations [Language Code]
 #
 # Language Code is in zh-CN, en-US format, not zh_CN, en_US format.
+# Same translation won't be uploaded twice.
 
+
+# Upload trunk
 cd kf5-trunk
 crowdin upload translations -b kf5-trunk -l $1 --import-eq-suggestions
 
-cd ../kf5-stable
+cd ..
+
+# Upload stable
+cd kf5-stable
 crowdin upload translations -b kf5-stable -l $1 --import-eq-suggestions

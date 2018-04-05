@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Updated: 2018-04-05
+
+# Define configuration variables shared by scripts
+#
+# Usage:
+#       source environment
+
+# These translations will be downloaded from Crowdin
+# Crowdin --> Local
+LOCALES="zh-CN zh-TW"
+LOCALES_UNDERSCORE=${LOCALES//-/_}
+
+# These translations will be committed to SVN server
+# Local --> SVN
+COMMIT_LOCALES="zh-CN"
+COMMIT_LOCALES_UNDERSCORE=${COMMIT_LOCALES//-/_}

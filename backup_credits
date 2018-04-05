@@ -2,11 +2,14 @@
 
 # Author: Guo Yunhe <guoyunhebrave@gmail.com>
 # Updated: 2018-04-05
- 
+
 # Back credit header in po files
 #
 # Crowdin will erease all credits in po files. So we have to backup and restore
 # them manually. Credits was saved in `credits` folder
+
+# Load environment variables
+source environment
 
 root_dir=$(realpath .)
 credits_dir=$root_dir/credits
@@ -27,12 +30,9 @@ function backup {
     cd $root_dir
 }
 
-backup kf5-trunk zh_CN messages
-backup kf5-trunk zh_CN docmessages
-backup kf5-stable zh_CN messages
-backup kf5-stable zh_CN docmessages
-
-backup kf5-trunk zh_TW messages
-backup kf5-trunk zh_TW docmessages
-backup kf5-stable zh_TW messages
-backup kf5-stable zh_TW docmessages
+for locale in $LOCALES_UNDERSCORE; do
+    backup kf5-trunk $locale messages
+    backup kf5-trunk $locale docmessages
+    backup kf5-stable $locale messages
+    backup kf5-stable $locale docmessages
+done
