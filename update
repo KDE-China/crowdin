@@ -8,6 +8,8 @@
 # Load environment variables
 source environment
 
+echo "[SVN Update] start"
+
 cd kf5-trunk
 svn revert --depth=infinity .
 svn cleanup --remove-unversioned zh_CN
@@ -22,6 +24,8 @@ svn up $LOCALES_UNDERSCORE
 
 cd ..
 
+echo "[SVN Update] done"
+
 # Generate missing po files from pot templates
 generate() {
     for pot in $(find -name "*.pot"); do
@@ -35,10 +39,12 @@ generate() {
     done
 }
 
+echo "[Generate Missing Translations] start"
+
 cd kf5-trunk/templates
 generate
 
 cd ../../kf5-stable/templates
 generate
 
-# End of file
+echo "[Generate Missing Translations] done"

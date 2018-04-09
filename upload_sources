@@ -7,10 +7,12 @@
 
 ./update
 
+echo "[Upload Sources] start"
+
 cd kf5-trunk
 crowdin upload sources -b kf5-trunk
 
 cd ../kf5-stable
 crowdin upload sources -b kf5-stable
 
-# End of file
+echo "[Upload Sources] done"

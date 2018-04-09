@@ -4,6 +4,10 @@
 
 ./backup_credits
 
+# Download translations from Crowdin
+
+echo "[Download Translations] start"
+
 cd kf5-trunk
 crowdin download -b kf5-trunk | grep " - "> lost.txt
 
@@ -12,8 +16,16 @@ crowdin download -b kf5-stable | grep " - "> lost.txt
 
 cd ..
 
+echo "[Download Translations] done"
+
+# Format po files
+
+echo "[Format Translations] start"
+
 for po in $(find -name "*.po"); do
     msgcat -w 79 -o $po $po
 done
+
+echo "[Format Translations] done"
 
 ./restore_credits

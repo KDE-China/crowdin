@@ -17,3 +17,10 @@ LOCALES_UNDERSCORE=${LOCALES//-/_}
 # Local --> SVN
 COMMIT_LOCALES="zh-CN"
 COMMIT_LOCALES_UNDERSCORE=${COMMIT_LOCALES//-/_}
+
+# Locations
+ROOT_DIR=$(realpath .)
+CREDITS_DIR=$ROOT_DIR/credits
+
+# Scripts
+COPY_CREDITS=$ROOT_DIR/copy_credits.py

@@ -3,22 +3,23 @@
 # Load environment variables
 source environment
 
-root_dir=$(realpath .)
-credits_dir=$root_dir/credits
-fetch_script=$root_dir/fetch-old-credits.py
-
+# $1 - branch kf5-trunk or kf5-stable
+# $2 - language code
+# $3 - messages or docmessages
 function restore {
-    backup_dir=$credits_dir/$1/$2/$3
+    backup_dir=$CREDITS_DIR/$1/$2/$3
     mkdir -p $backup_dir
-    po_dir=$root_dir/$1/$2/$3
+    po_dir=$ROOT_DIR/$1/$2/$3
     cd $po_dir
-    for po in $(find -name "*.po"); do
-        credit_file=$backup_dir/$(basename $po).credit
+    for po_file in $(find -name "*.po"); do
+        credit_file=$backup_dir/$(basename $po_file).credit
         touch $credit_file
-        $fetch_script $credit_file $po
+        $COPY_CREDITS $credit_file $po_file
     done
-    cd $root_dir
+    cd $ROOT_DIR
 }
+
+echo "[Restore Credits] start"
 
 for locale in $LOCALES_UNDERSCORE; do
     restore kf5-trunk $locale messages
@@ -26,3 +27,5 @@ for locale in $LOCALES_UNDERSCORE; do
     restore kf5-stable $locale messages
     restore kf5-stable $locale docmessages
 done
+
+echo "[Restore Credits] done"

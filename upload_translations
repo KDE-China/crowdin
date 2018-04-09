@@ -15,6 +15,7 @@
 # Language Code is in zh-CN, en-US format, not zh_CN, en_US format.
 # Same translation won't be uploaded twice.
 
+echo "[Upload Translations] start"
 
 # Upload trunk
 cd kf5-trunk
@@ -25,3 +26,5 @@ cd ..
 # Upload stable
 cd kf5-stable
 crowdin upload translations -b kf5-stable -l $1 --import-eq-suggestions
+
+echo "[Upload Translations] done"
