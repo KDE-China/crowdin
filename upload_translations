@@ -15,6 +15,12 @@
 # Language Code is in zh-CN, en-US format, not zh_CN, en_US format.
 # Same translation won't be uploaded twice.
 
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+    exit 1
+fi
+
 echo "[Upload Translations] start"
 
 # Upload trunk
