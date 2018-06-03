@@ -1,8 +1,53 @@
 # Crowdin 翻译同步工作流
 
-Sources: SVN --> Local --> Crowdin
+- [翻译流程（开放参与）](#翻译流程)
+- [同步流程（限管理员）](#同步流程)
 
-Translations: Crowdin --> Local --> SVN
+# 翻译流程
+
+## 加入交流群
+
+开源工作交流是要务。目前有两个主要的交流群：
+
+* 微信 - 没有公开链接，加群主 guoyunhebrave 为好友，然后邀请加入群
+* Telegram - [点击加入](https://t.me/kde_cn)
+
+## 注册 Crowdin 账号并加入团队
+
+[项目主页](https://crowdin.com/project/kdeorg)
+
+注册后，加入团队，即可开始翻译。但是在动工之前，请先仔细阅读下面的内容，了解基本的翻译注意事项。
+
+Crowdin 是一个在线翻译协作平台。于 2017 年由 Guo Yunhe 引入。在此之前，只有少数拥有 KDE 提交权限的开发者可以直接翻译，其他人只能发送翻译文件到邮件列表，然后等人审核。Crowdin 带来的便利有以下几点：
+
+* 开放参与。任何人都可以注册账号，加入团队，翻译贡献。每个人的翻译记录都会被记录下来，而不会被覆盖或丢弃。贡献者之间相互审核，选择最优的翻译。已通过的翻译会被 KDE 包含，或者最新的翻译。
+* 透明运作。任何操作都会记录在活动日志当中，有不当翻译或者蓄意破坏很容易被发现并撤销。同时管理员的行为也会被监督。
+* 翻译存储。不止 KDE 项目的翻译存储，Crowdin 上成千上万开源项目的翻译存储都可以作为参考。使翻译更加便利。
+* 机器翻译。虽然机器翻译质量参差不齐，但也是一种有益的参考。
+* 分支同步。KDE 有两个主要分支，trunk 和 stable。以前我们要同时翻译两个分支，用 Lokalize 设置起来十分繁琐。而 Crowdin 可以自动将两个分支上对应的文件的翻译同步，无需重复翻译或者进行复杂的设置。
+* 操作简单。不需要会使用 Subversion 和 Lokalize 等工具，不需要每次手动在邮件列表投递。
+
+## 使用 Crowdin 操作界面
+
+请参考此链接 https://crowdin.com/page/tour#tab_translators
+
+1. 如果一个字符串没有翻译，则你可以提交新的翻译建议。新的翻译建议虽然尚未审核，但也会同步到 KDE 项目中。
+2. 如果一个字符串已有翻译，但尚未审核通过，则新提交的翻译会被优先采用，同步到 KDE 项目中。
+3. 如果一个字符串已有翻译，且已经审核通过，则新提交的翻译不会被使用。如果你认为已审核通过的翻译有问题，可以在右侧的评论面板中提出，并选中 **Issue**。管理员和原翻译者都会收到通知，并作出回复。
+
+## 翻译原则
+
+1. 优先级。软件优先，文档次要。在文件树里 kf5-trunk/messages 和 kf5-stable/messages 是最重要的，而 docmessages 则是很次要的，很少有用户去看。文件夹按照重要程度进行了排序，排在前面的优先翻译。
+2. 谨慎使用翻译存储和机器翻译。翻译存储并不都是正确的，有的错误非常明显。机器翻译大部分时候也不能直接使用。翻译者需要仔细检查，适当修改。
+3. 批量替换某个词汇/术语的翻译之前，最好和其它人商量一下。
+
+## 一般规范
+
+# 同步流程
+
+源字符串流向: SVN --> Local --> Crowdin
+
+翻译字符串流向: Crowdin --> Local --> SVN
 
 ## 系统需求
 
@@ -12,7 +57,7 @@ Translations: Crowdin --> Local --> SVN
 4.  gettext-tools
 5.  crowdin-cli (version 2)
 
-You also need a API key given by project maintainers. Create a file at `~/.crowdin.yaml`:
+You also need an API key given by project maintainers. Create a file at `~/.crowdin.yaml`:
 
 ```yaml
 "api_key" : "<your_key_string>"
@@ -38,13 +83,11 @@ cd crowdin
 
 首先在 Crowdin 网站上的设置里，添加新的 Target Language 。
 
-然后需要修改 init 脚本，在 $LANGS 里添加 zh_HK 。注意这里连字符是 \_ 。然后运行
+然后需要修改 [environment](environment) 脚本，在 $LANGS 里添加 zh_HK 。注意这里连字符是 \_ 。然后运行
 
 ```
 ./init
 ```
-
-再后需要更改 commit, backup_credits 和 resotre_credits 脚本中的 $LANGS 变量。
 
 最后运行翻译上传脚本：
 
