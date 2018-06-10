@@ -14,7 +14,7 @@
 开源工作交流是要务。目前有两个主要的交流群：
 
 * 微信 - 没有公开链接，加群主 guoyunhebrave 为好友，然后邀请加入群
-* Telegram - [点击加入](https://t.me/kde_cn)
+* Telegram - [点击加入](https://telegram.me/joinchat/BsHH0EEmrFtB-cO0k1wD8g)
 
 ### 注册 Crowdin
 
