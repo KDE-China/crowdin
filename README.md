@@ -1,6 +1,11 @@
 # Crowdin 翻译同步工作流
 
 - [翻译流程（开放参与）](#翻译流程)
+    - [加入交流群](#加入交流群)
+    - [注册 Crowdin](#注册 Crowdin)
+    - [使用 Crowdin](#使用 Crowdin)
+    - [翻译原则](#翻译原则)
+    - [一般规范](#一般规范)
 - [同步流程（限管理员）](#同步流程)
 
 ## 翻译流程
@@ -12,7 +17,7 @@
 * 微信 - 没有公开链接，加群主 guoyunhebrave 为好友，然后邀请加入群
 * Telegram - [点击加入](https://t.me/kde_cn)
 
-### 注册 Crowdin 账号并加入团队
+### 注册 Crowdin
 
 [项目主页](https://crowdin.com/project/kdeorg)
 
@@ -27,7 +32,7 @@ Crowdin 是一个在线翻译协作平台。于 2017 年由 Guo Yunhe 引入。�
 * 分支同步。KDE 有两个主要分支，trunk 和 stable。以前我们要同时翻译两个分支，用 Lokalize 设置起来十分繁琐。而 Crowdin 可以自动将两个分支上对应的文件的翻译同步，无需重复翻译或者进行复杂的设置。
 * 操作简单。不需要会使用 Subversion 和 Lokalize 等工具，不需要每次手动在邮件列表投递。
 
-### 使用 Crowdin 操作界面
+### 使用 Crowdin
 
 请参考此链接 https://crowdin.com/page/tour#tab_translators
 
