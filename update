@@ -38,7 +38,9 @@ for file in $(find . -name "*.pot")
 do
     file1="${file/\.\//}"
     file2="${file1//\//--}"
-    mv $file "../../../kf5-trunk/templates/docmessages/extragear-graphics/krita--$file2"
+    file3="$ROOT_DIR/kf5-trunk/templates/docmessages/extragear-graphics/krita--$file2"
+    mv $file $file3
+    svn add $file3 -q --parents >/dev/null
 done
 
 echo "[Import Krita Document Templates] done"

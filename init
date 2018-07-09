@@ -19,12 +19,14 @@ rm -rf kf5-trunk kf5-stable docs-krita-org
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
 # Initialize trunk branch
+cd $ROOT_DIR
 svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
 cd $ROOT_DIR/kf5-trunk
 svn up templates
 svn up $LOCALES_UNDERSCORE
 
 # Initialize stable branch
+cd $ROOT_DIR
 svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
 cd $ROOT_DIR/kf5-stable
 svn up templates
@@ -35,6 +37,7 @@ cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-trunk/
 cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-stable/
 
 # Clone Krita document
+cd $ROOT_DIR
 git clone git@git.kde.org:websites/docs-krita-org.git
 
 # End of file

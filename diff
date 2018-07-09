@@ -4,6 +4,9 @@
 
 # This script will check translation changes before submit.
 
+# Load environment variables
+source environment
+
 # Diff trunk branch
 cd kf5-trunk
 svn diff > trunk.diff
