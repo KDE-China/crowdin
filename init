@@ -13,27 +13,28 @@
 source environment
 
 # Remove old data if exists
-rm -rf kf5-trunk kf5-stable
+rm -rf kf5-trunk kf5-stable docs-krita-org
 
 # Define URI to SVN server
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
 # Initialize trunk branch
 svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
-cd kf5-trunk
+cd $ROOT_DIR/kf5-trunk
 svn up templates
 svn up $LOCALES_UNDERSCORE
-cd ..
 
 # Initialize stable branch
 svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
-cd kf5-stable
+cd $ROOT_DIR/kf5-stable
 svn up templates
 svn up $LOCALES_UNDERSCORE
-cd ..
 
 # Copy crowdin configuration file to branches
-cp crowdin.yaml kf5-trunk
-cp crowdin.yaml kf5-stable
+cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-trunk/
+cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-stable/
+
+# Clone Krita document
+git clone git@git.kde.org:websites/docs-krita-org.git
 
 # End of file

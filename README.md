@@ -356,6 +356,7 @@ kde-china@kde.org,xxx@gmail.com,xxx@outlook.com
 3.  python
 4.  gettext-tools
 5.  crowdin-cli (version 2)
+6.  python3-Sphinx
 
 You also need an API key given by project maintainers. Create a file at `~/.crowdin.yaml`:
 

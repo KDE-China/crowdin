@@ -10,23 +10,42 @@ source environment
 
 echo "[SVN Update] start"
 
-cd kf5-trunk
+cd $ROOT_DIR/kf5-trunk
 svn revert --depth=infinity .
-svn cleanup --remove-unversioned zh_CN
+svn cleanup --remove-unversioned $LOCALES_UNDERSCORE
 svn up templates
 svn up $LOCALES_UNDERSCORE
 
-cd ../kf5-stable
+cd $ROOT_DIR/kf5-stable
 svn revert --depth=infinity . # Revert unstaged changes
-svn cleanup --remove-unversioned zh_CN # Remove unversioned files
+svn cleanup --remove-unversioned $LOCALES_UNDERSCORE # Remove unversioned files
 svn up templates
 svn up $LOCALES_UNDERSCORE
-
-cd ..
 
 echo "[SVN Update] done"
 
-# Generate missing po files from pot templates
+echo "[Import Krita Document Templates] start"
+
+rm $ROOT_DIR/kf5-trunk/templates/docmessages/extragear-graphics/krita--*
+
+cd $ROOT_DIR/docs-krita-org
+git reset
+git pull
+make gettext
+cd _build/gettext
+
+for file in $(find . -name "*.pot")
+do
+    file1="${file/\.\//}"
+    file2="${file1//\//--}"
+    mv $file "../../../kf5-trunk/templates/docmessages/extragear-graphics/krita--$file2"
+done
+
+echo "[Import Krita Document Templates] done"
+
+
+echo "[Generate Missing Translations] start"
+
 generate() {
     for pot in $(find -name "*.pot"); do
         for locale in $LOCALES_UNDERSCORE; do
@@ -39,12 +58,10 @@ generate() {
     done
 }
 
-echo "[Generate Missing Translations] start"
-
-cd kf5-trunk/templates
+cd $ROOT_DIR/kf5-trunk/templates
 generate
 
-cd ../../kf5-stable/templates
+cd $ROOT_DIR/kf5-stable/templates
 generate
 
 echo "[Generate Missing Translations] done"

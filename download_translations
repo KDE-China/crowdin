@@ -4,23 +4,20 @@
 
 ./backup_credits
 
-# Download translations from Crowdin
-
 echo "[Download Translations] start"
 
-cd kf5-trunk
+cd $ROOT_DIR/kf5-trunk
 crowdin download -b kf5-trunk | grep " - "> lost.txt
 
-cd ../kf5-stable
+cd $ROOT_DIR/kf5-stable
 crowdin download -b kf5-stable | grep " - "> lost.txt
-
-cd ..
 
 echo "[Download Translations] done"
 
-# Format po files
 
 echo "[Format Translations] start"
+
+cd $ROOT_DIR
 
 for po in $(find -name "*.po"); do
     msgcat -w 79 -o $po $po
@@ -29,3 +26,24 @@ done
 echo "[Format Translations] done"
 
 ./restore_credits
+
+echo "[Export Krita Document Translations] start"
+
+for locale in $COMMIT_LOCALES_UNDERSCORE; do
+    rm -r "$ROOT_DIR/docs-krita-org/locale/$locale/LC_MESSAGES"
+    mkdir -p "$ROOT_DIR/docs-krita-org/locale/$locale/LC_MESSAGES"
+
+    cd $ROOT_DIR/kf5-trunk/$locale/docmessages/extragear-graphics
+
+    for file in $(find . -name "krita--*.po")
+    do
+        file1="${file/\.\/krita--/}"
+        file2="${file1/--/\/}"
+        mv $file "$ROOT_DIR/docs-krita-org/locale/$locale/LC_MESSAGES/$file2"
+    done
+done
+
+cd $ROOT_DIR/docs-krita-org
+git add --all
+
+echo "[Export Krita Document Translations] done"
