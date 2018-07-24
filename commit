@@ -9,10 +9,6 @@ source environment
 
 echo "[SVN Commit] start"
 
-# Commit Krita document sources
-cd $ROOT_DIR/kf5-trunk/templates
-svn commit -m "Update Krita Document templates"
-
 for locale in $COMMIT_LOCALES_UNDERSCORE; do
 
     # Commit trunk branch
@@ -26,10 +22,5 @@ for locale in $COMMIT_LOCALES_UNDERSCORE; do
     svn commit -m "Crowdin Sync [kf5-stable] [$locale]"
 
 done
-
-# Commit Krita document translations
-cd $ROOT_DIR/docs-krita-org
-git commit -m "Crowdin Sync"
-git push
 
 echo "[SVN Commit] done"

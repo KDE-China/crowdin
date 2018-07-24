@@ -24,28 +24,6 @@ svn up $LOCALES_UNDERSCORE
 
 echo "[SVN Update] done"
 
-echo "[Import Krita Document Templates] start"
-
-rm $ROOT_DIR/kf5-trunk/templates/docmessages/extragear-graphics/krita--*
-
-cd $ROOT_DIR/docs-krita-org
-git reset
-git pull
-make gettext
-cd _build/gettext
-
-for file in $(find . -name "*.pot")
-do
-    file1="${file/\.\//}"
-    file2="${file1//\//--}"
-    file3="$ROOT_DIR/kf5-trunk/templates/docmessages/extragear-graphics/krita--$file2"
-    mv $file $file3
-    svn add $file3 -q --parents >/dev/null
-done
-
-echo "[Import Krita Document Templates] done"
-
-
 echo "[Generate Missing Translations] start"
 
 generate() {

@@ -13,7 +13,7 @@
 source environment
 
 # Remove old data if exists
-rm -rf kf5-trunk kf5-stable docs-krita-org
+rm -rf kf5-trunk kf5-stable
 
 # Define URI to SVN server
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
@@ -35,9 +35,5 @@ svn up $LOCALES_UNDERSCORE
 # Copy crowdin configuration file to branches
 cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-trunk/
 cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-stable/
-
-# Clone Krita document
-cd $ROOT_DIR
-git clone git@git.kde.org:websites/docs-krita-org.git
 
 # End of file
