@@ -13,16 +13,13 @@ for locale in $COMMIT_LOCALES_UNDERSCORE; do
 
     # Commit trunk branch
     echo "[SVN Commit] $locale kf5-trunk"
-    cd kf5-trunk/$locale
+    cd $ROOT_DIR/kf5-trunk/$locale
     svn commit -m "Crowdin Sync [kf5-trunk] [$locale]"
 
     # Commit stable branch
     echo "[SVN Commit] $locale kf5-stable"
-    cd ../../kf5-stable/$locale
+    cd $ROOT_DIR/kf5-stable/$locale
     svn commit -m "Crowdin Sync [kf5-stable] [$locale]"
-
-    # Back to project root directory
-    cd ../../
 
 done
 

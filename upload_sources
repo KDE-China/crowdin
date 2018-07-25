@@ -5,14 +5,17 @@
 
 # Upload local source pots to Crowdin
 
+# Load environment variables
+source environment
+
 ./update
 
 echo "[Upload Sources] start"
 
-cd kf5-trunk
+cd $ROOT_DIR/kf5-trunk
 crowdin upload sources -b kf5-trunk
 
-cd ../kf5-stable
+cd $ROOT_DIR/kf5-stable
 crowdin upload sources -b kf5-stable
 
 echo "[Upload Sources] done"

@@ -19,21 +19,21 @@ rm -rf kf5-trunk kf5-stable
 PREFIX="svn+ssh://svn@svn.kde.org/home/kde"
 
 # Initialize trunk branch
+cd $ROOT_DIR
 svn co $PREFIX/trunk/l10n-kf5 kf5-trunk --depth empty
-cd kf5-trunk
+cd $ROOT_DIR/kf5-trunk
 svn up templates
 svn up $LOCALES_UNDERSCORE
-cd ..
 
 # Initialize stable branch
+cd $ROOT_DIR
 svn co $PREFIX/branches/stable/l10n-kf5 kf5-stable --depth empty
-cd kf5-stable
+cd $ROOT_DIR/kf5-stable
 svn up templates
 svn up $LOCALES_UNDERSCORE
-cd ..
 
 # Copy crowdin configuration file to branches
-cp crowdin.yaml kf5-trunk
-cp crowdin.yaml kf5-stable
+cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-trunk/
+cp $ROOT_DIR/crowdin.yaml $ROOT_DIR/kf5-stable/
 
 # End of file

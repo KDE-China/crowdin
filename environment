@@ -10,7 +10,7 @@
 
 # These translations will be downloaded from Crowdin
 # Crowdin --> Local
-LOCALES="zh-CN zh-TW"
+LOCALES="zh-CN"
 LOCALES_UNDERSCORE=${LOCALES//-/_}
 
 # These translations will be committed to SVN server

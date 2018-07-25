@@ -15,6 +15,9 @@
 # Language Code is in zh-CN, en-US format, not zh_CN, en_US format.
 # Same translation won't be uploaded twice.
 
+# Load environment variables
+source environment
+
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied"
