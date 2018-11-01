@@ -1,5 +1,7 @@
 # Crowdin 翻译同步工作流
 
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/kdeorg/localized.svg)](https://crowdin.com/project/kdeorg)
+
 # 已迁移到 GitLab -> https://gitlab.com/kde-china/crowdin
 
 - [翻译流程（开放参与）](#翻译流程)
