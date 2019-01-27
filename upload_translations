@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Author: Guo Yunhe <guoyunhebrave@gmail.com>
-# Updated: 2018-04-05
+# Author: Guo Yunhe <i@guoyunhe.me>
+# Updated: 2019-01-27
 
 # Upload translations to Crowdin
 #
@@ -17,12 +17,6 @@
 
 # Load environment variables
 source environment
-
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-    exit 1
-fi
 
 echo "[Upload Translations] start"
 

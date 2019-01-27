@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Copyright Guo Yunhe <guoyunhebrave@gmail.com> 2017
+# Author: Guo Yunhe <i@guoyunhe.me>
+# Updated: 2019-01-27
 
 ./upload_sources
+./upload_translations
 ./download_translations
 ./commit
