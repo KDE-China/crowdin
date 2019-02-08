@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Author: Guo Yunhe <i@guoyunhe.me>
+# Updated: 2019-02-08
+
+# Update sources and translations from KDE SVN server.
+
+# Load environment variables
+source environment
+
+echo "[Generate Missing Translations] start"
+
+generate() {
+    for pot in $(find -name "*.pot"); do
+        for locale in $LOCALES_UNDERSCORE; do
+            po="../$locale/$(echo $pot | sed 's/pot$/po/g')"
+            if [ ! -f $po ]; then
+                install -m 644 -Dv $pot $po
+                svn add $po -q --parents >/dev/null
+            fi
+        done
+    done
+}
+
+cd $ROOT_DIR/kf5-trunk/templates
+generate
+
+cd $ROOT_DIR/kf5-stable/templates
+generate
+
+echo "[Generate Missing Translations] done"

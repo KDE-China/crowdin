@@ -7,6 +7,8 @@ source environment
 
 ./backup_credits
 
+./generate_missing
+
 echo "[Download Translations] start"
 
 cd $ROOT_DIR/kf5-trunk

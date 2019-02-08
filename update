@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Author: Guo Yunhe <guoyunhebrave@gmail.com>
+# Author: Guo Yunhe <i@guoyunhe.me>
 # Updated: 2018-04-05
 
 # Update sources and translations from KDE SVN server.
@@ -23,25 +23,3 @@ svn up templates
 svn up $LOCALES_UNDERSCORE
 
 echo "[SVN Update] done"
-
-echo "[Generate Missing Translations] start"
-
-generate() {
-    for pot in $(find -name "*.pot"); do
-        for locale in $LOCALES_UNDERSCORE; do
-            po="../$locale/$(echo $pot | sed 's/pot$/po/g')"
-            if [ ! -f $po ]; then
-                install -m 644 -Dv $pot $po
-                svn add $po -q --parents >/dev/null
-            fi
-        done
-    done
-}
-
-cd $ROOT_DIR/kf5-trunk/templates
-generate
-
-cd $ROOT_DIR/kf5-stable/templates
-generate
-
-echo "[Generate Missing Translations] done"
