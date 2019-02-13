@@ -3,5 +3,6 @@
 # Author: Guo Yunhe <i@guoyunhe.me>
 # Updated: 2019-01-27
 
+git pull
 ./upload_sources
 ./upload_translations
