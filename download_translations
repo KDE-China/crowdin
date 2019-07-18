@@ -11,11 +11,16 @@ source environment
 
 echo "[Download Translations] start"
 
-cd $ROOT_DIR/kf5-trunk
-crowdin download -b kf5-trunk | grep " - "> lost.txt
+function download {
+    echo "Downloading $1..."
+    cd $ROOT_DIR/$1
+    until timeout 5m crowdin download -b $1 | grep " - "> lost.txt; do
+        echo "Timeout, retry..."
+    done
+}
 
-cd $ROOT_DIR/kf5-stable
-crowdin download -b kf5-stable | grep " - "> lost.txt
+download kf5-trunk
+download kf5-stable
 
 echo "[Download Translations] done"
 
