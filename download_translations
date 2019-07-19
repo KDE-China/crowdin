@@ -14,7 +14,7 @@ echo "[Download Translations] start"
 function download {
     echo "Downloading $1..."
     cd $ROOT_DIR/$1
-    until timeout 5m crowdin download -b $1 | grep " - "> lost.txt; do
+    until timeout 30m crowdin download -b $1; do
         echo "Timeout, retry..."
     done
 }
