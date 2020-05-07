@@ -20,25 +20,21 @@ source environment
 
 echo "[Upload Translations] start"
 
-# Upload trunk
-cd kf5-trunk
-if [ $# -eq 0 ]
-then
-    crowdin upload translations -b kf5-trunk --import-eq-suggestions
-else
-    crowdin upload translations -b kf5-trunk -l $1 --import-eq-suggestions
-fi
-
-cd ..
-
-# Upload stable
-cd kf5-stable
-
+# Always update stable first to avoid losing translations or approvals
+cd $ROOT_DIR/kf5-stable
 if [ $# -eq 0 ]
 then
     crowdin upload translations -b kf5-stable --import-eq-suggestions
 else
     crowdin upload translations -b kf5-stable -l $1 --import-eq-suggestions
+fi
+
+cd $ROOT_DIR/kf5-trunk
+if [ $# -eq 0 ]
+then
+    crowdin upload translations -b kf5-trunk --import-eq-suggestions
+else
+    crowdin upload translations -b kf5-trunk -l $1 --import-eq-suggestions
 fi
 
 echo "[Upload Translations] done"

@@ -12,10 +12,11 @@ source environment
 
 echo "[Upload Sources] start"
 
-cd $ROOT_DIR/kf5-trunk
-crowdin upload sources -b kf5-trunk
-
+# Always update stable first to avoid losing translations or approvals
 cd $ROOT_DIR/kf5-stable
 crowdin upload sources -b kf5-stable
+
+cd $ROOT_DIR/kf5-trunk
+crowdin upload sources -b kf5-trunk
 
 echo "[Upload Sources] done"
